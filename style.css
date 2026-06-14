@@ -1,0 +1,672 @@
+/* ==========================================================================
+   1. INNOVATIVE NEON DUSK VARIABLES & RESET
+   ========================================================================== */
+:root {
+    --bg-color: #0b0f19; /* Deep Cosmic Navy Space */
+    --text-color: #f1f5f9;
+    --text-muted: #94a3b8;
+    --primary-gradient: linear-gradient(135deg, #00f2fe, #4facfe, #bd00ff);
+    --accent-neon: #00f2fe; /* Glowing Cyan */
+    --highlight-purple: #d946ef; /* Bright Fuchsia */
+    --glass-bg: rgba(15, 23, 42, 0.65);
+    --glass-border: rgba(0, 242, 254, 0.15); /* Neon Tinted Border */
+    --glass-shadow: rgba(0, 242, 254, 0.05);
+    --nav-bg: rgba(11, 15, 25, 0.9);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   2. REUSABLE GLASSMORPHISM UTILITIES
+   ========================================================================== */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 0 12px rgba(0, 242, 254, 0.05);
+    border-radius: 20px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 800;
+}
+
+.gradient-text {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 8px rgba(0, 242, 254, 0.2));
+}
+
+/* ==========================================================================
+   3. NAVIGATION BAR
+   ========================================================================== */
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 10%;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+nav .logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--accent-neon);
+    letter-spacing: 1px;
+    text-shadow: 0 0 10px rgba(0, 242, 254, 0.3);
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+    color: var(--accent-neon);
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-gradient);
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+    width: 100%;
+}
+
+/* ==========================================================================
+   4. HERO SECTION WITH TYPING INTERFACE
+   ========================================================================== */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10%;
+    padding-top: 100px;
+    gap: 4rem;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+.hero-content h1 {
+    font-size: 3.8rem;
+    margin-bottom: 1rem;
+    font-weight: 800;
+}
+
+.hero-content h2 {
+    font-size: 2.2rem;
+    color: var(--highlight-purple);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    min-height: 50px;
+}
+
+.hero-content p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.btn {
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    background: var(--primary-gradient);
+    color: #0b0f19;
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.2);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(189, 0, 255, 0.4);
+}
+
+.btn-outline {
+    padding: 0.9rem 2.2rem;
+    border-radius: 50px;
+    font-weight: 700;
+    text-decoration: none;
+    border: 2px solid var(--accent-neon);
+    color: var(--accent-neon);
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    background: rgba(0, 242, 254, 0.08);
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+    transform: translateY(-4px);
+}
+
+.socials a {
+    color: var(--text-muted);
+    font-size: 1.6rem;
+    margin-right: 1.5rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.socials a:hover {
+    color: var(--accent-neon);
+    transform: translateY(-3px) scale(1.15);
+    filter: drop-shadow(0 0 8px var(--accent-neon));
+}
+
+.hero-image img {
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid rgba(0, 242, 254, 0.4);
+    box-shadow: 0 0 50px rgba(189, 0, 255, 0.25), 0 0 20px rgba(0, 242, 254, 0.2);
+}
+
+/* ==========================================================================
+   5. DASHBOARD STATS ARRAY
+   ========================================================================== */
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 2rem;
+    padding: 4rem 10%;
+}
+
+.stat-card {
+    padding: 2rem;
+    text-align: center;
+}
+
+.stat-card h2 {
+    font-size: 2.8rem;
+    color: var(--accent-neon);
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+}
+
+.stat-card p {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.stat-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--highlight-purple);
+    box-shadow: 0 12px 30px rgba(189, 0, 255, 0.15);
+}
+
+/* ==========================================================================
+   6. ABOUT ME SECTION
+   ========================================================================== */
+#about, #skills, #projects, #certifications, #contact {
+    padding: 6rem 10%;
+}
+
+.about-card {
+    padding: 3rem;
+}
+
+.about-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-neon);
+}
+
+.about-card p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   7. SKILLS NEON GRID DISPLAY
+   ========================================================================== */
+.skills-container {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+}
+
+.skill-category {
+    padding: 2.5rem;
+}
+
+.skill-category h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--accent-neon);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-box {
+    background: rgba(11, 15, 25, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 14px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.skill-box:hover {
+    border-color: var(--highlight-purple);
+    transform: translateY(-5px);
+    background: rgba(189, 0, 255, 0.04);
+    box-shadow: 0 5px 15px rgba(189, 0, 255, 0.1);
+}
+
+.skill-icon {
+    font-size: 2.4rem;
+    margin-bottom: 0.8rem;
+    color: var(--highlight-purple);
+    transition: transform 0.3s ease;
+}
+
+.skill-box:hover .skill-icon {
+    transform: scale(1.1);
+    color: var(--accent-neon);
+}
+
+.skill-box h4 {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+   8. INNOVATIVE PROJECTS TIMELINE & SPLIT GRID
+   ========================================================================== */
+.project-category {
+    margin-bottom: 4rem;
+}
+
+.project-heading {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+    font-weight: 700;
+    border-left: 4px solid var(--highlight-purple);
+    padding-left: 1rem;
+}
+
+.major-projects {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.major-card {
+    padding: 2.5rem;
+}
+
+.major-card:hover {
+    transform: scale(1.01) translateX(5px);
+    border-color: var(--accent-neon);
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.1);
+}
+
+.major-content h3 {
+    font-size: 1.6rem;
+    color: var(--accent-neon);
+}
+
+.project-date {
+    color: var(--highlight-purple);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.major-content p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+}
+
+.major-content ul {
+    list-style: none;
+    margin-bottom: 2rem;
+}
+
+.major-content ul li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-muted);
+}
+
+.major-content ul li::before {
+    content: "⚡";
+    position: absolute;
+    left: 0;
+    color: var(--accent-neon);
+}
+
+.learning-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.learning-card {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.learning-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--accent-neon);
+}
+
+.learning-icon-purple {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--highlight-purple);
+}
+
+.learning-card h3 {
+    font-size: 1.3rem;
+    color: var(--accent-neon);
+    margin-bottom: 0.8rem;
+    font-weight: 700;
+}
+
+.learning-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.tech-stack span {
+    background: rgba(0, 242, 254, 0.06);
+    color: var(--accent-neon);
+    padding: 0.4rem 1.1rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    border: 1px solid rgba(0, 242, 254, 0.2);
+}
+
+/* ==========================================================================
+   9. CERTIFICATIONS CARDS
+   ========================================================================== */
+.certifications-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.cert-card {
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.cert-card:hover {
+    border-color: var(--accent-neon);
+    transform: translateY(-5px);
+}
+
+.cert-icon {
+    font-size: 2.6rem;
+    color: var(--highlight-purple);
+    margin-bottom: 1.5rem;
+}
+
+.cert-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+}
+
+.cert-card p {
+    color: var(--text-muted);
+    margin-bottom: 1.5rem;
+    flex-grow: 1;
+}
+
+.cert-org {
+    font-weight: 600;
+    color: var(--accent-neon);
+}
+
+/* ==========================================================================
+   10. CONTACT CHANNELS & INPUTS
+   ========================================================================== */
+.contact-subtitle {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    margin-top: -2rem;
+    margin-bottom: 4rem;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+}
+
+.contact-info, .contact-form {
+    padding: 3rem;
+}
+
+.contact-info h3, .contact-form h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.contact-desc {
+    color: var(--text-muted);
+    margin-bottom: 2.5rem;
+}
+
+.info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    margin-bottom: 3rem;
+}
+
+.info-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.info-card i {
+    font-size: 1.8rem;
+    color: var(--accent-neon);
+}
+
+.info-card span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: block;
+}
+
+.info-card p {
+    font-weight: 500;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: #0b0f19;
+    background: var(--accent-neon);
+    box-shadow: 0 0 15px var(--accent-neon);
+    transform: translateY(-3px);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+input, textarea {
+    background: rgba(11, 15, 25, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    border-color: var(--accent-neon);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.15);
+}
+
+button[type="submit"] {
+    background: var(--primary-gradient);
+    color: #0b0f19;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(189, 0, 255, 0.3);
+}
+
+/* ==========================================================================
+   11. RESPONSIVE DESIGN
+   ========================================================================== */
+@media (max-width: 1024px) {
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 140px;
+        gap: 2rem;
+    }
+    .buttons, .socials {
+        justify-content: center;
+    }
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+    }
+    #about, #skills, #projects, #certifications, #contact {
+        padding: 4rem 5%;
+    }
+    .hero-content h1 {
+        font-size: 2.8rem;
+    }
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+    .about-card {
+        padding: 1.5rem;
+    }
+}
